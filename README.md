@@ -20,6 +20,7 @@ The support service sees the tasks, response to them, and also changes the statu
 ```
 python3 -m venv .venv
 . ./.venv/bin/activate
+pip install --upgrade setuptools
 pip install -r requirements.txt
 ```
 After that,  you'll have *support app* and *all development tools* installed into virtualenv. For correctly **Djoser** 
