@@ -19,16 +19,15 @@ class TimestampModel(models.Model):
 
 class Ticket(TimestampModel):
 
-    TICKET_STATUS = [
-        ('RESOLVED', 'Resolved'),
-        ('UNRESOLVED', 'Unresolved'),
-        ('DEFERRED', 'Deferred'),
-    ]
+    class Status(models.TextChoices):
+        RESOLVED = 'RS', 'Resolved'
+        UNRESOLVED = 'UN', 'Unresolved'
+        DEFERRED = 'DF', 'Deferred'
 
     ticket_id = models.CharField(max_length=6, blank=True, unique=True, primary_key=True)
     ticket_author = models.ForeignKey(Profile, on_delete=models.CASCADE)
     content = models.TextField(max_length=200)
-    ticket_status = models.CharField(max_length=10, choices=TICKET_STATUS, default='UNRESOLVED')
+    ticket_status = models.CharField(max_length=2, choices=Status.choices, default=Status.UNRESOLVED)
 
     def save(self, *args, **kwargs):
         if len(self.ticket_id) == 0:
