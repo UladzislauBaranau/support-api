@@ -10,7 +10,7 @@ class ListProfilesView(generics.ListCreateAPIView):
     """List of all user profiles."""
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = (IsAuthenticated,)
 
     def perform_create(self, serializer):
         user = self.request.user

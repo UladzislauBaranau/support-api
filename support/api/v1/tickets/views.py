@@ -35,7 +35,7 @@ class ListTicketsView(generics.ListAPIView):
     """Users can view the tickets list."""
     queryset = Ticket.objects.all()
     serializer_class = TicketSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = (IsAuthenticated,)
 
 
 class UpdateTicketStatusView(generics.RetrieveUpdateAPIView):
@@ -52,7 +52,7 @@ class CreateMessageView(generics.ListCreateAPIView):
     """
     queryset = Message.objects.all()
     serializer_class = MessageSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = (IsAuthenticated,)
 
     def perform_create(self, serializer):
         ticket_id = self.kwargs.get('ticket_id')
@@ -66,7 +66,7 @@ class CreateMessageView(generics.ListCreateAPIView):
 class UserTicketsListView(generics.ListAPIView):
     """User can view a list of his tickets."""
     serializer_class = TicketsInfoSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
         ticket_author = Profile.objects.get(user=self.request.user)
