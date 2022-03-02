@@ -40,7 +40,7 @@ def test_update_ticket_status_success(api_client_support, test_ticket):
     ticket_id = test_ticket[0].ticket_id
     endpoint = f'/api/v1/tickets/{ticket_id}/'
     request_data = {
-        'ticket_status': 'RESOLVED',
+        'ticket_status': 'RS',
     }
     response = api_client_support.put(endpoint, data=request_data)
     assert response.status_code == status.HTTP_200_OK
@@ -50,7 +50,7 @@ def test_update_ticket_status_fail(api_client_user, test_ticket):
     ticket_id = test_ticket[0].ticket_id
     endpoint = f'/api/v1/tickets/{ticket_id}/'
     request_data = {
-        'ticket_status': 'DEFERRED',
+        'ticket_status': 'DF',
     }
     response = api_client_user.put(endpoint, data=request_data)
     assert response.status_code == status.HTTP_403_FORBIDDEN
