@@ -7,60 +7,23 @@ The support service sees the tasks, response to them, and also changes the statu
 - JWT authorization
 - Send emails used a message broker
 
-## Technical Requirements/Installation
+## Installation
 
-### Requirements
-1. Python 3.8+
-2. PostgreSQL 12+
-3. Redis-server
-
-### Installation
-
-#### Development tools
-```
-python3 -m venv .venv
-. ./.venv/bin/activate
-pip install --upgrade setuptools
-pip install -r requirements.txt
-```
-After that,  you'll have *support app* and *all development tools* installed into virtualenv. For correctly **Djoser** 
-work, you need to `import six` by the following path `.venv/lib64/python3.8/site-packages/django/utils/__init__.py`.
-
-#### SMTP backend
+### SMTP backend
 Replace `EMAIL ADDRESS` and `EMAIL ADDRESS PASSWORD` with your real ones at `setting.py`. Also don't forget to change
 email on `tasks.py` module.
 
-#### Setup PostgreSQL
-```
-sudo -u postgres psql
-```
-```
-postgres=# create database support;
-postgres=# create user support with encrypted password 'support';
-postgres=# grant all privileges on database support to support;
-postgres=# alter user support CREATEDB;
-```
+### Configuration *.env.dev* file 
+Refer to [env example](https://github.com/UladzislauBaranau/support-api/blob/changejwt/.env.dev), as a full configuration file. By default, development environment searched at `./.env.dev`.
 
-## Running and Testing
+## Running project in docker
 
-### Running
-
-#### Run migrations and dev server
+Run the following commands:
 ```
-./manage.py migrate
-./manage.py runserver
+docker build -t support .
+docker-compose up --build
 ```
-
-#### Run redis and celery
-```
-redis-server
-celery -A support worker -l INFO
-```
-Detailed information about the work of **Celery** with **Django** can be found in 
-the [documentation](https://docs.celeryproject.org/en/stable/django/first-steps-with-django.html).
-
-### Testing
-Before running the tests, please enable **redis-server**, and then run the `pytest` command.
+Detailed information about quickstart **Docker** and **Django** can be found in [documentation](https://docs.docker.com/samples/django/).
 
 ## License
 See [MIT license](https://github.com/UladzislauBaranau/support-api/blob/master/LICENSE).
