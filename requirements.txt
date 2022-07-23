@@ -1,8 +1,6 @@
 django==3.2
 djangorestframework==3.12
 djangorestframework-simplejwt==5.0.0
-djoser==2.0
-six==1.16.0
 psycopg2-binary==2.9.3
 flake8==4.0.1
 flake8-commas==2.1.0
